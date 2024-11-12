@@ -1,5 +1,5 @@
 const core = require('@actions/core');
-const minimatch = require('minimatch');
+const { minimatch } = require('minimatch');
 const parse = require('lcov-parse');
 const fs = require('fs');
 
