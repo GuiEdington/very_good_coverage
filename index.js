@@ -62,6 +62,7 @@ function run() {
     
     // Log output para ser capturado como variável no terminal
     console.log(`::set-output name=coverage::${coverage}`);
+    core.info(`::set-output name=coverage::${coverage}`)
 
     if (!isValidBuild) {
       core.setFailed(
@@ -75,6 +76,7 @@ function run() {
         resultMessage += linesMissingCoverageMessage;
       }
       core.info(resultMessage);
+      core.info(`test`)
     }
   });
 }
