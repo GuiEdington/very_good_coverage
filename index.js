@@ -59,10 +59,11 @@ function run() {
     let linesMissingCoverageMessage =
       `Lines not covered:\n` +
       linesMissingCoverageByFile.map((line) => `  ${line}`).join('\n');
-    
+
     // Log output para ser capturado como variável no terminal
     console.log(`::set-output name=coverage::${coverage}`);
-    core.info(`::set-output name=coverage::${coverage}`)
+    core.info(`::set-output name=coverage::${coverage}`);
+    core.setOutput('coverage', coverage);
 
     if (!isValidBuild) {
       core.setFailed(
@@ -76,7 +77,7 @@ function run() {
         resultMessage += linesMissingCoverageMessage;
       }
       core.info(resultMessage);
-      core.info(`test`)
+      core.info(`test`);
     }
   });
 }
