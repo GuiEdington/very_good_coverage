@@ -59,6 +59,10 @@ function run() {
     let linesMissingCoverageMessage =
       `Lines not covered:\n` +
       linesMissingCoverageByFile.map((line) => `  ${line}`).join('\n');
+    
+    // Set output with the coverage value
+    core.setOutput('coverage', coverage); // Adicionando o output com o valor da cobertura
+
     if (!isValidBuild) {
       core.setFailed(
         `${coverage} is less than min_coverage ${minCoverage}\n\n` +
@@ -77,7 +81,7 @@ function run() {
 
 function shouldCalculateCoverageForFile(fileName, excludedFiles) {
   for (let i = 0; i < excludedFiles.length; i++) {
-    const isExcluded = minimatch.minimatch(fileName, excludedFiles[i]);
+    const isExcluded = minimatch(fileName, excludedFiles[i]);
     if (isExcluded) {
       core.debug(`Excluding ${fileName} from coverage`);
       return false;
