@@ -60,8 +60,8 @@ function run() {
       `Lines not covered:\n` +
       linesMissingCoverageByFile.map((line) => `  ${line}`).join('\n');
     
-    // Set output with the coverage value
-    core.setOutput('coverage', coverage); // Adicionando o output com o valor da cobertura
+    // Log output para ser capturado como variável no terminal
+    console.log(`::set-output name=coverage::${coverage}`);
 
     if (!isValidBuild) {
       core.setFailed(
